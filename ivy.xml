@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+	<info organisation="javafpe" module="javafpe">
+		<license name="BSD 3-Clause License" url="https://opensource.org/licenses/BSD-3-Clause" />
+		<description>
+			This Ivy file is used to download the third-party dependencies of the javafpe project.
+		</description>
+	</info>
+	<configurations defaultconf="runtime">
+		<conf name="build" description="Only dependencies required to compile the sources." />
+		<conf name="runtime" extends="build" description="All dependencies required to run xml2csv." />
+		<conf name="develop" extends="runtime" description="Downloads all dependencies including the source code and javadoc.  Useful if you want to develop xml2csv." />
+	</configurations>
+	<dependencies>
+		<dependency org="ch.qos.logback" name="logback-classic" rev="1.1.2" conf="*->default" />
+		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.14" conf="*->default" />
+		<dependency org="junit" name="junit" rev="4.11" conf="*->default" />
+	</dependencies>
+</ivy-module>

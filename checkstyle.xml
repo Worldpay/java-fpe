@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+
+<!--
+    This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+    Checkstyle-Configuration: javafpe
+    Description: none
+-->
+<module name="Checker">
+  <property name="severity" value="warning"/>
+  <module name="TreeWalker">
+    <module name="FileContentsHolder"/>
+    <module name="MissingDeprecated"/>
+    <module name="AnnotationUseStyle"/>
+    <module name="MissingDeprecated"/>
+    <module name="MissingOverride"/>
+    <module name="PackageAnnotation"/>
+    <module name="SuppressWarnings"/>
+    <module name="JavadocStyle"/>
+    <module name="JavadocType"/>
+    <module name="AbstractClassName"/>
+    <module name="ClassTypeParameterName"/>
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="LocalVariableName"/>
+    <module name="MemberName"/>
+    <module name="MethodName"/>
+    <module name="MethodTypeParameterName"/>
+    <module name="PackageName"/>
+    <module name="ParameterName"/>
+    <module name="StaticVariableName"/>
+    <module name="TypeName"/>
+    <module name="IllegalImport"/>
+    <module name="RedundantImport"/>
+    <module name="UnusedImports"/>
+    <module name="TodoComment"/>
+    <module name="TrailingComment"/>
+    <module name="AnonInnerLength"/>
+    <module name="ExecutableStatementCount">
+      <property name="tokens" value="INSTANCE_INIT,STATIC_INIT,METHOD_DEF,CTOR_DEF"/>
+    </module>
+    <module name="LineLength">
+      <property name="max" value="160"/>
+      <property name="tabWidth" value="4"/>
+    </module>
+    <module name="MethodLength"/>
+    <module name="ParameterNumber"/>
+    <module name="OuterTypeNumber"/>
+    <module name="MethodCount"/>
+    <module name="GenericWhitespace"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyForIteratorPad"/>
+    <module name="NoWhitespaceAfter">
+      <property name="severity" value="ignore"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="NoWhitespaceBefore"/>
+    <module name="OperatorWrap"/>
+    <module name="MethodParamPad"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad">
+      <property name="tokens" value="RPAREN,TYPECAST"/>
+    </module>
+    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround"/>
+    <module name="ModifierOrder"/>
+    <module name="RedundantModifier"/>
+    <module name="AvoidNestedBlocks"/>
+    <module name="EmptyBlock"/>
+    <module name="LeftCurly"/>
+    <module name="NeedBraces"/>
+    <module name="RightCurly"/>
+    <module name="CovariantEquals"/>
+    <module name="DefaultComesLast"/>
+    <module name="EmptyStatement"/>
+    <module name="EqualsAvoidNull"/>
+    <module name="EqualsHashCode"/>
+    <module name="ExplicitInitialization"/>
+    <module name="FallThrough"/>
+    <module name="HiddenField">
+      <property name="ignoreConstructorParameter" value="true"/>
+      <property name="ignoreSetter" value="true"/>
+    </module>
+    <module name="IllegalInstantiation"/>
+    <module name="IllegalCatch"/>
+    <module name="IllegalThrows"/>
+    <module name="IllegalTokenText"/>
+    <module name="IllegalType">
+      <property name="tokens" value="METHOD_DEF,PARAMETER_DEF,VARIABLE_DEF"/>
+    </module>
+    <module name="InnerAssignment"/>
+    <module name="MissingSwitchDefault"/>
+    <module name="ModifiedControlVariable"/>
+    <module name="MultipleStringLiterals">
+      <property name="allowedDuplicates" value="3"/>
+    </module>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="NestedForDepth"/>
+    <module name="NestedIfDepth">
+      <property name="max" value="3"/>
+    </module>
+    <module name="NestedTryDepth"/>
+    <module name="PackageDeclaration"/>
+    <module name="ParameterAssignment"/>
+    <module name="RequireThis">
+      <property name="checkMethods" value="false"/>
+    </module>
+    <module name="ReturnCount"/>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+    <module name="StringLiteralEquality"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="ArrayTrailingComma"/>
+    <module name="OneStatementPerLine"/>
+    <module name="HideUtilityClassConstructor"/>
+    <module name="InterfaceIsType"/>
+    <module name="MutableException"/>
+    <module name="BooleanExpressionComplexity"/>
+    <module name="ClassDataAbstractionCoupling">
+      <property name="severity" value="ignore"/>
+      <property name="max" value="10"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
+    </module>
+    <module name="ClassFanOutComplexity"/>
+    <module name="CyclomaticComplexity"/>
+    <module name="JavaNCSS"/>
+    <module name="NPathComplexity"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="UpperEll"/>
+    <module name="OuterTypeFilename"/>
+    <module name="JavadocMethod">
+      <property name="suppressLoadErrors" value="true"/>
+    </module>
+    <module name="AvoidStarImport"/>
+    <module name="ImportOrder">
+      <property name="groups" value="java.,javax.,net.,org.,com."/>
+    </module>
+  </module>
+  <module name="FileLength"/>
+  <module name="Translation"/>
+  <module name="UniqueProperties"/>
+  <module name="SuppressionCommentFilter"/>
+</module>
