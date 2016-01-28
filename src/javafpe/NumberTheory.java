@@ -398,7 +398,7 @@ class NumberTheory {
 
 	/**
 	 * Factor num into a and b which are as close together as possible. Assumes n is composed mostly of small factors which is the case for typical uses of FPE
-	 * (typically, n is a power of 10) Want a >= b since the safe number of rounds is 2+log_a(b); if a >= b then this is always 3
+	 * (typically, n is a power of 10) Want a &gt;= b since the safe number of rounds is 2+log_a(b); if a &gt;= b then this is always 3
 	 *
 	 * @param num the number to factor.
 	 * @throws FPEException thrown if we could not factor n for use in FPE.

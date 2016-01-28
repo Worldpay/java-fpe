@@ -14,8 +14,9 @@ import org.junit.Test;
 
 /**
  * Credit Card tests are "incomplete" tests, in that there's no automated assertion here. They're included to easily check compatibility with the Botan toolkit
- * ({@link http://botan.randombit.net/}). This class contains code that behaves like the "cc_encrypt" sample included with Botan. See
- * {@link http://botan.randombit.net/manual/javafpe.html}, so you can check that this implementation is interoperable with Botan.
+ * (<a href="http://botan.randombit.net/">http://botan.randombit.net/</a>). This class contains code that behaves like the "cc_encrypt" sample included with
+ * Botan. See <a href="http://botan.randombit.net/manual/javafpe.html">http://botan.randombit.net/manual/javafpe.html</a>, so you can check that this
+ * implementation is interoperable with Botan.
  */
 public class BotanCCTests {
 
@@ -94,9 +95,7 @@ public class BotanCCTests {
 		BigInteger encryptedCCNumber = FE1.encrypt(modulus, ccAsBigInt, encodedPassword, tweak);
 
 		final String encryptedCCNumberAsString = encryptedCCNumber.toString();
-		System.out.println(String.format(
-						"Run the following command on boton:\nbotan cc_encrypt %s %s --tweak=%s",
-						ccNumber, password, tweakString));
+		System.out.println(String.format("Run the following command on boton:\nbotan cc_encrypt %s %s --tweak=%s", ccNumber, password, tweakString));
 		System.out.println(String.format("\nIf this works, then you will be returned the number: %s",
 						encryptedCCNumberAsString + this.calculateLuhnCheckDigit(encryptedCCNumberAsString)));
 	}

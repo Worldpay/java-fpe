@@ -102,13 +102,13 @@ public class FE1 {
 		 * Encryption works as follows:
 		 * <ol>
 		 * <li>Serialise r to a minimal byte array with no leading zero bytes</li>
-		 * <li>Create a byte array consisting of:</li>
+		 * <li>Create a byte array consisting of:
 		 * <ol type="i">
 		 * <li>macNT value</li>
 		 * <li>the round number</li>
 		 * <li>the length of the serialised value of r (32-bit)</li>
 		 * <li>the value of serialised r</li>
-		 * </ol>
+		 * </ol></li>
 		 * <li>Create an HMAC-SHA256 value of the output array and convert back to a BigInteger, this is the encrypted r.
 		 *</ol>
 		 *
@@ -156,8 +156,6 @@ public class FE1 {
 	 * @param tweak Non-secret parameter, think of it as an IV - use the same one used to encrypt
 	 * @return The decrypted number
 	 * @throws FPEException if the passed data is too large to decrypt.
-	 * @throws InvalidKeyException if the key passed is invalid.
-	 * @throws IOException if there are problems writing to an internal byte array stream, this should never happen.
 	 */
 	public static BigInteger decrypt(BigInteger modulus, BigInteger ciphertext, byte[] key, byte[] tweak) throws FPEException {
 		FPEEncryptor encryptor = new FPEEncryptor(key, modulus, tweak);
@@ -236,14 +234,14 @@ public class FE1 {
 	}
 
 	/**
-	 * According to a paper by Rogaway, Bellare, etc. {@link http://eprint.iacr.org/2009/251.pdf}, the minimum safe number of rounds to use for FPE is
-	 * 2+log_a(b). If a >= b then log_a(b)<= 1 so 3 rounds is safe. The FPE factorization routine should always return a >= b, so just confirm that
+	 * According to <a href="http://eprint.iacr.org/2009/251.pdf">FPE paper by Rogaway, Bellare, etc.</a>, the minimum safe number of rounds to use for FPE is
+	 * 2+log_a(b). If a &gt;= b then log_a(b)&lt;= 1 so 3 rounds is safe. The FPE factorization routine should always return a &gt;= b, so just confirm that
 	 * and return 3.
 	 *
 	 * @param a first number output from {@link NumberTheory#factor(BigInteger)}
 	 * @param b second number output from {@link NumberTheory#factor(BigInteger)}
 	 * @return 3
-	 * @throws FPEException FPE rounds: a < b
+	 * @throws FPEException FPE rounds: a &lt; b
 	 */
 	private static int getNumberOfRounds(BigInteger a, BigInteger b) throws FPEException {
 		if (a.compareTo(b) == -1) {
