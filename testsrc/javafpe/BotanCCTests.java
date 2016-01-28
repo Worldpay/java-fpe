@@ -92,7 +92,7 @@ public class BotanCCTests {
 
 		BigInteger ccAsBigInt = new BigInteger(ccBaseNumber);
 
-		BigInteger encryptedCCNumber = FE1.encrypt(modulus, ccAsBigInt, encodedPassword, tweak);
+		BigInteger encryptedCCNumber = new FE1().encrypt(modulus, ccAsBigInt, encodedPassword, tweak);
 
 		final String encryptedCCNumberAsString = encryptedCCNumber.toString();
 		System.out.println(String.format("Run the following command on boton:\nbotan cc_encrypt %s %s --tweak=%s", ccNumber, password, tweakString));

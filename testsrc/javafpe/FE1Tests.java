@@ -23,8 +23,8 @@ public class FE1Tests {
 		assertEquals("Cannot encrypt number(" + plainText + ") that is bigger than modulus (" + modulus + "), bug in test!", 1,
 						modulus.compareTo(BigInteger.valueOf(plainText)));
 		BigInteger plainTextBigInteger = BigInteger.valueOf(plainText);
-		BigInteger cipherText = FE1.encrypt(modulus, plainTextBigInteger, key, iv);
-		BigInteger decryptedText = FE1.decrypt(modulus, cipherText, key, iv);
+		BigInteger cipherText = new FE1().encrypt(modulus, plainTextBigInteger, key, iv);
+		BigInteger decryptedText = new FE1().decrypt(modulus, cipherText, key, iv);
 
 		LOGGER.info("Round trip: {} -> {} -> {}", plainTextBigInteger, cipherText, decryptedText);
 

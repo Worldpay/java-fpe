@@ -26,5 +26,4 @@ public class FPEException extends Exception {
 	public FPEException(String message, Throwable cause) {
 		super(message, cause);
 	}
-
 }

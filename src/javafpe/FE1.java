@@ -16,13 +16,15 @@ import org.slf4j.LoggerFactory;
  * Format Preserving Encryption using the scheme FE1 from the paper "Format-Preserving Encryption" by Bellare, Rogaway, et al
  * (http://eprint.iacr.org/2009/251). Ported from DotFPE (https://dotfpe.codeplex.com/); which was ported from Botan Library Version 1.10.3
  * (http://botan.randombit.net).
+ * <p>
+ * Methods on this class are not thread-safe.
  */
 public class FE1 {
 
 	/**
-	 * Prevents construction of a utility class.
+	 * Instantiates a new FE1 instance.
 	 */
-	private FE1() {
+	public FE1() {
 	}
 	
 	/**
@@ -149,6 +151,8 @@ public class FE1 {
 
 	/**
 	 * Generic Z_n FPE decryption, FE1 scheme.
+	 * <p>
+	 * This method is not thread-safe.
 	 *
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
 	 * @param ciphertext The number to decrypt.
@@ -157,7 +161,7 @@ public class FE1 {
 	 * @return The decrypted number
 	 * @throws FPEException if the passed data is too large to decrypt.
 	 */
-	public static BigInteger decrypt(BigInteger modulus, BigInteger ciphertext, byte[] key, byte[] tweak) throws FPEException {
+	public BigInteger decrypt(BigInteger modulus, BigInteger ciphertext, byte[] key, byte[] tweak) throws FPEException {
 		FPEEncryptor encryptor = new FPEEncryptor(key, modulus, tweak);
 
 		BigInteger[] factors = NumberTheory.factor(modulus);
@@ -193,6 +197,8 @@ public class FE1 {
 
 	/**
 	 * Generic Z_n FPE encryption using the FE1 scheme.
+	 * <p>
+	 * This method is not thread-safe.
 	 *
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
 	 * @param plaintext The number to encrypt.
@@ -201,7 +207,7 @@ public class FE1 {
 	 * @return the encrypted version of <code>plaintext</code>.
 	 * @throws FPEException if encryption was not possible.
 	 */
-	public static BigInteger encrypt(final BigInteger modulus, final BigInteger plaintext, final byte[] key, final byte[] tweak) throws FPEException {
+	public BigInteger encrypt(final BigInteger modulus, final BigInteger plaintext, final byte[] key, final byte[] tweak) throws FPEException {
 		FPEEncryptor encryptor = new FPEEncryptor(key, modulus, tweak);
 
 		BigInteger[] factors = NumberTheory.factor(modulus);
