@@ -29,10 +29,11 @@ public class UtilityTests {
 
 	@Test
 	public void testEncode() {
-		assertArrayEquals(this.cba(0xBE, 0xBA, 0xFE, 0xCA), Utility.encode(BigInteger.valueOf(0xCAFEBABE)));
-		assertArrayEquals(this.cba(0xBA, 0xFE, 0xCA), Utility.encode(BigInteger.valueOf(0xCAFEBA00)));
-		assertArrayEquals(this.cba(0xFE, 0xCA), Utility.encode(BigInteger.valueOf(0xCAFE0000)));
-		assertArrayEquals(this.cba(0xCA), Utility.encode(BigInteger.valueOf(0xCA000000)));
+		// TODO These tests may be pointless as BigInteger is being sensible.  Need negative numbers to prove it maybe?
+		assertArrayEquals(this.cba(0xCA, 0xFE, 0xBA, 0xBE), Utility.encode(BigInteger.valueOf(0xCAFEBABE)));
+		assertArrayEquals(this.cba(0xCA, 0xFE, 0xBA), Utility.encode(BigInteger.valueOf(0x00CAFEBA)));
+		assertArrayEquals(this.cba(0xCA, 0xFE), Utility.encode(BigInteger.valueOf(0x0000CAFE)));
+		assertArrayEquals(this.cba(0xCA), Utility.encode(BigInteger.valueOf(0x000000CA)));
 		assertArrayEquals(new byte[0], Utility.encode(BigInteger.valueOf(0)));
 	}
 
