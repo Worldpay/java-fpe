@@ -2,15 +2,10 @@ package javafpe;
 
 import java.math.BigInteger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Utility methods to factor large numbers and count zero bits on numbers.
  */
 class NumberTheory {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger("javafpe.NumberTheory");
 
 	/**
 	 * All primes up to 2^16.
@@ -447,9 +442,6 @@ class NumberTheory {
 			throw new FPEException("Could not factor n for use in FPE (num passed is prime)");
 		}
 
-		if (LOGGER.isTraceEnabled()) {
-			LOGGER.trace("Two closest factors of {} are {} and {}", num, a, b);
-		}
 		return new BigInteger[] { a, b };
 	}
 

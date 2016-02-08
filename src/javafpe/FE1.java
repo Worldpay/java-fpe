@@ -9,9 +9,6 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Format Preserving Encryption using the scheme FE1 from the paper "Format-Preserving Encryption" by Bellare, Rogaway, et al
  * (http://eprint.iacr.org/2009/251). Ported from DotFPE (https://dotfpe.codeplex.com/); which was ported from Botan Library Version 1.10.3
@@ -91,10 +88,6 @@ public class FE1 {
 				throw new FPEException("Unable to write to byte array", e);
 			}
 			this.macNT = this.macGenerator.doFinal(baos.toByteArray());
-
-			if (LOGGER.isTraceEnabled()) {
-				LOGGER.trace("macNT initialised to {}", this.macNT);
-			}
 		}
 
 		/**
@@ -141,8 +134,6 @@ public class FE1 {
 			return ret;
 		}
 	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger("javafpe.FE1");
 
 	/**
 	 * Normally FPE is for SSNs, CC#s, etc, nothing too big.

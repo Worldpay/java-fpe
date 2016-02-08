@@ -4,15 +4,10 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Utility methods that swap between BigInteger, Java primitives and byte array representations of numbers.
  */
 public class Utility {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger("javafpe.Utility");
 
 	/**
 	 * Converts the passed big integer to a byte array, stripping off all the leading zero bytes.
@@ -37,9 +32,6 @@ public class Utility {
 			System.arraycopy(nAsByteArray, firstNonZeroIndex, encodedN, 0, nAsByteArray.length - firstNonZeroIndex);
 		}
 
-		if (LOGGER.isTraceEnabled()) {
-			LOGGER.trace("Encoded {} ({}) as {}", n, LoggingHelper.bytesToHex(n.toByteArray()), LoggingHelper.bytesToHex(encodedN));
-		}
 		return encodedN;
 	}
 
