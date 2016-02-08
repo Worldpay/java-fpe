@@ -8,7 +8,7 @@
 	</info>
 	<configurations defaultconf="runtime">
 		<conf name="build" description="Only dependencies required to compile the sources." />
-		<conf name="runtime" extends="build" description="All dependencies required to run xml2csv." />
+		<conf name="runtime" extends="build" description="All dependencies required to run javafpe" />
 		<conf name="develop" extends="runtime" description="Downloads all dependencies including the source code and javadoc.  Useful if you want to develop xml2csv." />
 	</configurations>
 	<dependencies>
