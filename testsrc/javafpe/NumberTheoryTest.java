@@ -67,6 +67,7 @@ public class NumberTheoryTest {
 		for (int i = 0; i < NumberTheory.PRIMES.length; i++) {
 			assertEquals(Integer.toString(NumberTheory.PRIMES[i]), NumberTheory.PRIMES_BI[i].toString());
 		}
+		System.out.println(NumberTheory.PRIMES.length);
 	}
 
 }
