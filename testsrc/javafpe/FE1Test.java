@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class FE1Tests {
+public class FE1Test {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger("javafpe.FE1Tests");
+	private static final Logger LOGGER = LoggerFactory.getLogger("javafpe.FE1Test");
 
 	private static final byte[] TEST_IV = new byte[] { 0x00, 0x01, 0x02, 0x03, 0x04 };
 

@@ -18,7 +18,7 @@ import org.junit.Test;
  * Botan. See <a href="http://botan.randombit.net/manual/javafpe.html">http://botan.randombit.net/manual/javafpe.html</a>, so you can check that this
  * implementation is interoperable with Botan.
  */
-public class BotanCCTests {
+public class BotanCCTest {
 
 	/**
 	 * Used to convert a string of hexadecimal digits in to an array of bytes.

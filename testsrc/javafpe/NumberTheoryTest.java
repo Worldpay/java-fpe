@@ -7,7 +7,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-public class NumberTheoryTests {
+public class NumberTheoryTest {
 
 	/**
 	 * "Create Factored Primes": creates an array of {@link BigInteger} instances from the array of integers passed.

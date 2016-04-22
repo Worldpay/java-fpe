@@ -10,9 +10,8 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * Format Preserving Encryption using the scheme FE1 from the paper "Format-Preserving Encryption" by Bellare, Rogaway, et al
- * (http://eprint.iacr.org/2009/251). Ported from DotFPE (https://dotfpe.codeplex.com/); which was ported from Botan Library Version 1.10.3
- * (http://botan.randombit.net).
+ * Format Preserving Encryption using the scheme FE1 from the paper "Format-Preserving Encryption" by Bellare, Rogaway, et al (http://eprint.iacr.org/2009/251).
+ * Ported from DotFPE (https://dotfpe.codeplex.com/); which was ported from Botan Library Version 1.10.3 (http://botan.randombit.net).
  * <p>
  * Methods on this class are not thread-safe.
  */
@@ -23,7 +22,7 @@ public class FE1 {
 	 */
 	public FE1() {
 	}
-	
+
 	/**
 	 * A simple round function based on HMAC(SHA-256).
 	 */
@@ -91,8 +90,8 @@ public class FE1 {
 		}
 
 		/**
-		 * Mixes the round number, the input value r and the previously calculated {@link #macNT} in to a new value. Calling this repeatedly on the
-		 * value of r with a new round number applies a reversible encryption to the value.
+		 * Mixes the round number, the input value r and the previously calculated {@link #macNT} in to a new value. Calling this repeatedly on the value of r
+		 * with a new round number applies a reversible encryption to the value.
 		 * <p>
 		 * Encryption works as follows:
 		 * <ol>
@@ -103,12 +102,12 @@ public class FE1 {
 		 * <li>the round number</li>
 		 * <li>the length of the serialised value of r (32-bit)</li>
 		 * <li>the value of serialised r</li>
-		 * </ol></li>
+		 * </ol>
+		 * </li>
 		 * <li>Create an HMAC-SHA256 value of the output array and convert back to a BigInteger, this is the encrypted r.
-		 *</ol>
+		 * </ol>
 		 *
-		 * @param roundNo to ensure that value is changed in a different way each time, increase this for each time you call the method on the same
-		 *            value.
+		 * @param roundNo to ensure that value is changed in a different way each time, increase this for each time you call the method on the same value.
 		 * @param r the number that we are using as input to the function.
 		 * @return a new BigInteger value that has reversibly encrypted r.
 		 * @throws FPEException if any problems occur whilst writing to an internal {@link ByteArrayOutputStream}. This should never happen.
@@ -162,15 +161,14 @@ public class FE1 {
 		int rounds = getNumberOfRounds(firstFactor, secondFactor);
 
 		/*
-		 * x starts as the ciphertext value and will be modified by several rounds of encryption in the rest of this method before arriving back at
-		 * the plaintext value, which is returned.
+		 * x starts as the ciphertext value and will be modified by several rounds of encryption in the rest of this method before arriving back at the
+		 * plaintext value, which is returned.
 		 */
 		BigInteger x = ciphertext;
 
 		/*
-		 * Apply the same algorithm repeatedly on x for the number of rounds given by getNumberOfRounds. Each round increases the security. Note that
-		 * you must use EXACTLY the same number of rounds to decrypt as you did to encrypt! As the round number is used in the calculation, we count
-		 * down rather than up.
+		 * Apply the same algorithm repeatedly on x for the number of rounds given by getNumberOfRounds. Each round increases the security. Note that you must
+		 * use EXACTLY the same number of rounds to decrypt as you did to encrypt! As the round number is used in the calculation, we count down rather than up.
 		 */
 		for (int round = rounds - 1; round >= 0; round--) {
 			/*
@@ -214,7 +212,7 @@ public class FE1 {
 
 		/*
 		 * Apply the same algorithm repeatedly on x for the number of rounds given by getNumberOfRounds. Each round increases the security.
-		 */	
+		 */
 		for (int round = 0; round != rounds; round++) {
 			/*
 			 * Split the value of x in to left and right values (think splitting the binary in to two halves), around the second (smaller) factor
@@ -232,8 +230,8 @@ public class FE1 {
 
 	/**
 	 * According to <a href="http://eprint.iacr.org/2009/251.pdf">FPE paper by Rogaway, Bellare, etc.</a>, the minimum safe number of rounds to use for FPE is
-	 * 2+log_a(b). If a &gt;= b then log_a(b)&lt;= 1 so 3 rounds is safe. The FPE factorization routine should always return a &gt;= b, so just confirm that
-	 * and return 3.
+	 * 2+log_a(b). If a &gt;= b then log_a(b)&lt;= 1 so 3 rounds is safe. The FPE factorization routine should always return a &gt;= b, so just confirm that and
+	 * return 3.
 	 *
 	 * @param a first number output from {@link NumberTheory#factor(BigInteger)}
 	 * @param b second number output from {@link NumberTheory#factor(BigInteger)}

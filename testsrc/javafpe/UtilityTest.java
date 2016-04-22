@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
-public class UtilityTests {
+public class UtilityTest {
 
 	/**
 	 * Creates a byte array from the integers specified, used to conveniently create byte[] instances.
