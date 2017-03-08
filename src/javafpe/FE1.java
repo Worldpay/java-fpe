@@ -141,9 +141,6 @@ public class FE1 {
 
 	/**
 	 * Generic Z_n FPE decryption, FE1 scheme.
-	 * <p>
-	 * This method is not thread-safe.
-	 *
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
 	 * @param ciphertext The number to decrypt.
 	 * @param key Secret key
@@ -186,8 +183,6 @@ public class FE1 {
 
 	/**
 	 * Generic Z_n FPE encryption using the FE1 scheme.
-	 * <p>
-	 * This method is not thread-safe.
 	 *
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
 	 * @param plaintext The number to encrypt.

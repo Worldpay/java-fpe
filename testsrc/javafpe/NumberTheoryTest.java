@@ -61,13 +61,4 @@ public class NumberTheoryTest {
 		assertArrayEquals(this.cfp(1000, 1000), NumberTheory.factor(BigInteger.valueOf(1000000)));
 	}
 
-	@Test
-	public void testPrimesBiCreation() {
-		assertEquals(NumberTheory.PRIMES.length, NumberTheory.PRIMES_BI.length);
-		for (int i = 0; i < NumberTheory.PRIMES.length; i++) {
-			assertEquals(Integer.toString(NumberTheory.PRIMES[i]), NumberTheory.PRIMES_BI[i].toString());
-		}
-		System.out.println(NumberTheory.PRIMES.length);
-	}
-
 }
