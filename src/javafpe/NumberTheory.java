@@ -12,7 +12,7 @@ class NumberTheory {
 	 * <p>
 	 * This is an easy-to-declare version. The useful version of this array is set up in the static initialiser, which initalises {@link #PRIMES_BI}.
 	 */
-	private static final int[] PRIMES = new int[] { 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107,
+	static final int[] PRIMES = new int[] { 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107,
 					109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263,
 					269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433,
 					439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613,
@@ -395,12 +395,12 @@ class NumberTheory {
 	 * Factor num into a and b which are as close together as possible. Assumes n is composed mostly of small factors which is the case for typical uses of FPE
 	 * (typically, n is a power of 10) Want a &gt;= b since the safe number of rounds is 2+log_a(b); if a &gt;= b then this is always 3
 	 *
-	 * @param num the number to factor.
-	 * @throws FPEException thrown if we could not factor n for use in FPE.
+	 * @param number the number to factor.  This is typically the modulus.  This must NOT be a prime number or an exception will be thrown.
+	 * @throws FPEException thrown if we could not factor n for use in FPE (i.e. passed number is prime).
 	 * @return a pair (always 2) factors of the num passed in which are as close to each other as possible.
 	 */
-	static BigInteger[] factor(BigInteger num) throws FPEException {
-		BigInteger n = num;
+	static BigInteger[] factor(BigInteger number) throws FPEException {
+		BigInteger n = number;
 		BigInteger a = BigInteger.valueOf(1);
 		BigInteger b = BigInteger.valueOf(1);
 
@@ -439,7 +439,7 @@ class NumberTheory {
 
 		// if (a <= 1 || b <= 1) then no factors exist, i.e. you've passed a prime number
 		if ((a.compareTo(BigInteger.ONE) <= 0) || (b.compareTo(BigInteger.ONE) <= 0)) {
-			throw new FPEException("Could not factor n for use in FPE (num passed is prime)");
+			throw new FPEException("Could not factor passed number for use in FPE.  This is usually caused by passing a prime number for a modulus.");
 		}
 
 		return new BigInteger[] { a, b };

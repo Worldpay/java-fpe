@@ -76,6 +76,10 @@ public class BotanCCTest {
 		return ((mod == 0) ? 0 : 10 - mod);
 	}
 
+	/**
+	 * Encrypt a credit card number, mimicking the Botan CC encryptor utility.
+	 * @throws Exception if anything goes wrong.
+	 */
 	@Test
 	public void encryptCCNumber() throws Exception {
 		final String password = "passw0rd";
@@ -100,6 +104,15 @@ public class BotanCCTest {
 						encryptedCCNumberAsString + this.calculateLuhnCheckDigit(encryptedCCNumberAsString)));
 	}
 
+	/**
+	 * Encrypts a password with PBKDF2 with HMAC(SHA256).
+	 * @param password the password to encrypt.
+	 * @param salt a salt for the password.
+	 * @param iterations the number of rounds to apply PBKDF.
+	 * @param derivedKeyLength the to-be-derived key length.
+	 * @return an encrypted key.
+	 * @throws Exception if anything goes wrong.
+	 */
 	private byte[] getEncryptedPassword(String password, byte[] salt, int iterations, int derivedKeyLength) throws Exception {
 		KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, derivedKeyLength * 8);
 

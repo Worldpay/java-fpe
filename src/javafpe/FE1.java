@@ -44,16 +44,16 @@ public class FE1 {
 		 * <p>
 		 * Ultimately this initialises {@link #macNT} by creating a byte array with:
 		 * <ol>
-		 * <li>Writing the length of the encoded value of the modulus.</li>
-		 * <li>Writing the encoded value of the modulus.</li>
+		 * <li>Writing the length of the encoded value of the modulusBI.</li>
+		 * <li>Writing the encoded value of the modulusBI.</li>
 		 * <li>Writing the length of the tweak.</li>
 		 * <li>Writing the tweak.</li>
 		 * </ol>
 		 * And then setting {@link #macNT} to the HMAC'd value of this byte array.
 		 *
-		 * @param key the key to initiate the HMAC generator with.
+		 * @param key the key to initiate the HMAC with SHA256 generator with (must be valid for this algorithm).
 		 * @param modulus the range of the output numbers.
-		 * @param tweak an initialisation vector (IV) that will be used in the initialisation of the HMAC generator.
+		 * @param tweak an initialisation vector (IV) that will be used in the initialisation of the HMAC generator. Must be non-null and length &gt; 0.
 		 * @throws FPEException if either the HMAC algorithm or the key is incompatible with the HMAC.
 		 */
 		private FPEEncryptor(byte[] key, BigInteger modulus, byte[] tweak) throws FPEException {
@@ -64,6 +64,10 @@ public class FE1 {
 				throw new FPEException(HMAC_ALGORITHM + " is not a valid MAC algorithm on this JVM", e);
 			} catch (InvalidKeyException e) {
 				throw new FPEException("The key passed was not valid for use with " + HMAC_ALGORITHM, e);
+			}
+
+			if (tweak == null || tweak.length == 0) {
+				throw new IllegalArgumentException("tweak (IV) must be an array of length > 0");
 			}
 
 			byte[] encodedModulus = Utility.encode(modulus);
@@ -141,14 +145,27 @@ public class FE1 {
 
 	/**
 	 * Generic Z_n FPE decryption, FE1 scheme.
+	 * 
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
-	 * @param ciphertext The number to decrypt.
-	 * @param key Secret key
-	 * @param tweak Non-secret parameter, think of it as an IV - use the same one used to encrypt
+	 * @param ciphertext The number to decrypt. Must be &lt;= modulus.
+	 * @param key Secret key, must be compatible with HMAC(SHA256).
+	 * @param tweak Non-secret parameter, think of it as an IV - use the same one used to encrypt. Must be non-null and non-zero length.
 	 * @return The decrypted number
 	 * @throws FPEException if the passed data is too large to decrypt.
+	 * @throws IllegalArgumentException if any of the parameters are invalid.
 	 */
-	public BigInteger decrypt(BigInteger modulus, BigInteger ciphertext, byte[] key, byte[] tweak) throws FPEException {
+	public BigInteger decrypt(final BigInteger modulus, final BigInteger ciphertext, final byte[] key, final byte[] tweak) throws FPEException {
+		if (modulus == null) {
+			throw new IllegalArgumentException("modulus must not be null.");
+		}
+		if (ciphertext == null) {
+			throw new IllegalArgumentException("ciphertext must not be null.");
+		}
+
+		if (ciphertext.compareTo(modulus) >= 0) {
+			throw new IllegalArgumentException("Cannot decrypt a number bigger than the modulus (otherwise this wouldn't be format preserving encryption");
+		}
+
 		FPEEncryptor encryptor = new FPEEncryptor(key, modulus, tweak);
 
 		BigInteger[] factors = NumberTheory.factor(modulus);
@@ -184,14 +201,26 @@ public class FE1 {
 	/**
 	 * Generic Z_n FPE encryption using the FE1 scheme.
 	 *
-	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here.
-	 * @param plaintext The number to encrypt.
-	 * @param key Secret key to encrypt with.
-	 * @param tweak Non-secret parameter, think of it as an initialisation vector.
+	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here. Must not be null.
+	 * @param plaintext The number to encrypt. Must not be null.
+	 * @param key Secret key to encrypt with. Must be compatible with HMAC(SHA256).
+	 * @param tweak Non-secret parameter, think of it as an initialisation vector. Must be non-null and non-zero length.
 	 * @return the encrypted version of <code>plaintext</code>.
 	 * @throws FPEException if encryption was not possible.
+	 * @throws IllegalArgumentException if any of the parameters are invalid.
 	 */
 	public BigInteger encrypt(final BigInteger modulus, final BigInteger plaintext, final byte[] key, final byte[] tweak) throws FPEException {
+		if (modulus == null) {
+			throw new IllegalArgumentException("modulus must not be null.");
+		}
+		if (plaintext == null) {
+			throw new IllegalArgumentException("plaintext must not be null.");
+		}
+
+		if (plaintext.compareTo(modulus) >= 0) {
+			throw new IllegalArgumentException("Cannot encrypt a number bigger than the modulus (otherwise this wouldn't be format preserving encryption");
+		}
+		
 		FPEEncryptor encryptor = new FPEEncryptor(key, modulus, tweak);
 
 		BigInteger[] factors = NumberTheory.factor(modulus);
@@ -206,7 +235,8 @@ public class FE1 {
 		BigInteger x = plaintext;
 
 		/*
-		 * Apply the same algorithm repeatedly on x for the number of rounds given by getNumberOfRounds. Each round increases the security.
+		 * Apply the same algorithm repeatedly on x for the number of rounds given by getNumberOfRounds. Each round increases the security. Note that the
+		 * attribute and method names used align to the paper on FE1, not Java conventions on readability.
 		 */
 		for (int round = 0; round != rounds; round++) {
 			/*

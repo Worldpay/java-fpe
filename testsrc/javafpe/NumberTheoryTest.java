@@ -7,6 +7,9 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
+/**
+ * Tests for {@link NumberTheory}.
+ */
 public class NumberTheoryTest {
 
 	/**
@@ -23,6 +26,9 @@ public class NumberTheoryTest {
 		return bis;
 	}
 
+	/**
+	 * Main use-cases for counting the low zero bits of a number.
+	 */
 	@Test
 	public void testCountLowZeroBits() {
 		// If n<=0 always return 0
@@ -40,6 +46,9 @@ public class NumberTheoryTest {
 		assertEquals(15, NumberTheory.countLowZeroBits(BigInteger.valueOf(0b1000000000000000)));
 	}
 
+	/**
+	 * Main use-cases for counting the trailing zeros on a byte.
+	 */
 	@Test
 	public void testCountTrailingZeros() {
 		assertEquals(8, NumberTheory.countTrailingZeros((byte) 0b0));
@@ -50,6 +59,10 @@ public class NumberTheoryTest {
 		assertEquals(1, NumberTheory.countTrailingZeros((byte) 0b10101010));
 	}
 
+	/**
+	 * Limited valid test cases for factoring numbers and finding the two most close-together factors.
+	 * @throws FPEException if anything goes wrong.
+	 */
 	@Test
 	public void testFactor() throws FPEException {
 		assertArrayEquals(this.cfp(3, 3), NumberTheory.factor(BigInteger.valueOf(9)));

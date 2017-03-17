@@ -136,7 +136,9 @@
     </module>
     <module name="AvoidStarImport"/>
     <module name="ImportOrder">
+      <property name="severity" value="ignore"/>
       <property name="groups" value="java.,javax.,net.,org.,com."/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
   </module>
   <module name="FileLength"/>

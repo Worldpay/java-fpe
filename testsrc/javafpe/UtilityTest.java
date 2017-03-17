@@ -6,8 +6,14 @@ import java.math.BigInteger;
 
 import org.junit.Test;
 
+/**
+ * Tests for the {@link Utility} class.
+ */
 public class UtilityTest {
 
+	/**
+	 * Valid use-cases for encoding a BitInteger as byte array. 
+	 */
 	@Test
 	public void testEncode() {
 		// TODO These tests may be pointless as BigInteger is being sensible.  Need negative numbers to prove it maybe?
@@ -18,6 +24,9 @@ public class UtilityTest {
 		assertArrayEquals(new byte[0], Utility.encode(BigInteger.valueOf(0)));
 	}
 
+	/**
+	 * Main use-cases for reversing a byte array.
+	 */
 	@Test
 	public void testReverse() {
 		assertArrayEquals(new byte[0], Utility.reverse(new byte[0]));
@@ -25,6 +34,9 @@ public class UtilityTest {
 		assertArrayEquals(TestUtility.cba(0xCA), Utility.reverse(TestUtility.cba(0xCA)));
 	}
 
+	/**
+	 * Main use-cases for converting to BE and LE byte order.
+	 */
 	@Test
 	public void testToBELEBytes() {
 		assertArrayEquals(TestUtility.cba(0xCA, 0xFE, 0xBA, 0xBE), Utility.toBEBytes(0xCAFEBABE));
