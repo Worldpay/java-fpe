@@ -40,7 +40,7 @@ public class FE1 {
 		/**
 		 * Initialise a new encryptor.
 		 * <p>
-		 * Requires the availability of the {@value FPEEncryptor#HMAC_ALGORITHM}.
+		 * Requires the availability of the {@value FPEEncryptor#HMAC_ALGORITHM} MAC implementation via JCA.
 		 * <p>
 		 * Ultimately this initialises {@link #macNT} by creating a byte array with:
 		 * <ol>
@@ -85,7 +85,7 @@ public class FE1 {
 				baos.write(Utility.toBEBytes(tweak.length));
 				baos.write(tweak);
 
-				// Flushing most like a no-op, but best be sure.
+				// Flushing most likely a no-op, but best be sure.
 				baos.flush();
 			} catch (IOException e) {
 				throw new FPEException("Unable to write to byte array", e);
@@ -139,7 +139,7 @@ public class FE1 {
 	}
 
 	/**
-	 * Normally FPE is for SSNs, CC#s, etc, nothing too big.
+	 * Normally FPE is for SSNs, CC#s, etc.; so limit modulus to 128-bit numbers.
 	 */
 	private static final int MAX_N_BYTES = 128 / 8;
 
@@ -203,8 +203,9 @@ public class FE1 {
 	 *
 	 * @param modulus Use to determine the range of the numbers. Example, if the numbers range from 0 to 999, use "1000" here. Must not be null.
 	 * @param plaintext The number to encrypt. Must not be null.
-	 * @param key Secret key to encrypt with. Must be compatible with HMAC(SHA256).
-	 * @param tweak Non-secret parameter, think of it as an initialisation vector. Must be non-null and non-zero length.
+	 * @param key Secret key to encrypt with. Must be compatible with HMAC(SHA256).  See https://tools.ietf.org/html/rfc2104#section-3 for recommendations,
+	 * on key length and generation.  Anything over 64 bytes is hashed to a 64 byte value, 32 bytes is generally considered "good enough" for most applications.
+	 * @param tweak Non-secret parameter, think of it as an initialisation vector. Must be non-null and at least 1 byte long, no upper limit.
 	 * @return the encrypted version of <code>plaintext</code>.
 	 * @throws FPEException if encryption was not possible.
 	 * @throws IllegalArgumentException if any of the parameters are invalid.
@@ -260,7 +261,7 @@ public class FE1 {
 	 *
 	 * @param a first number output from {@link NumberTheory#factor(BigInteger)}
 	 * @param b second number output from {@link NumberTheory#factor(BigInteger)}
-	 * @return 3
+	 * @return Always returns the value 3
 	 * @throws FPEException FPE rounds: a &lt; b
 	 */
 	private static int getNumberOfRounds(BigInteger a, BigInteger b) throws FPEException {
