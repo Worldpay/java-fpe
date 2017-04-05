@@ -158,8 +158,15 @@
 	</target>
 
 	<target name="create-properties" description="Sets the values up for properties used in the build (current timestamp and Git information (latest tag is version number and latest commit hash)">
+		
+		<!-- Determine how to run Git, Windows is git.exe, non-Windows is git. -->
+		<condition property="gitExecutable" value="git.exe">
+			<os family="windows"/>
+		</condition>
+		<property name="gitExecutable" value="git"/>
+		
 		<!-- Get the short commit hash from Git -->
-		<exec executable="git.exe" outputproperty="commitHash">
+		<exec executable="${gitExecutable}" outputproperty="commitHash">
 			<arg value="log" />
 			<arg value="-1" />
 			<arg value="--pretty=format:%h" />
@@ -167,7 +174,7 @@
 		<echo message="Latest commit hash: ${commitHash}" />
 
 		<!-- Get the latest tag name, which is used as the version number of the build product -->
-		<exec executable="git.exe" outputproperty="version">
+		<exec executable="${gitExecutable}" outputproperty="version">
 			<arg value="describe" />
 			<arg value="--abbrev=0" />
 			<arg value="--tags" />
