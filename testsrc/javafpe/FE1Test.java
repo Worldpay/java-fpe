@@ -69,9 +69,9 @@ public class FE1Test {
 	 * 
 	 * @throws FPEException expected.
 	 */
-	@Test(expected = FPEException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testInvalidKey() throws FPEException {
-		new FE1().encrypt(BigInteger.valueOf(32), BigInteger.valueOf(0), new byte[] { 1, 2, 3, 4, 5, 6 }, new byte[] { 1, 2, 3, 4, 5 });
+		new FE1().encrypt(BigInteger.valueOf(32), BigInteger.valueOf(0), new byte[0], new byte[] { 1, 2, 3, 4, 5 });
 	}
 
 	/**

@@ -129,7 +129,6 @@ public class LongRunningFE1Test {
 	}
 
 	/**
-	 * Tests 
 	 * This can run for a very long time (hours) depending on your processor.  You can adjust the number of tests by changing the
 	 * for-loop bounds.  It's 10 in the checked in version, but feel free to reduce or extend as you see fit.
 	 * 

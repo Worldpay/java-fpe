@@ -75,7 +75,7 @@ public class FE1 {
 			byte[] encodedModulus = Utility.encode(modulus);
 
 			if (encodedModulus.length > MAX_N_BYTES) {
-				throw new FPEException("Size of encoded n is too large for FPE encryption (was " + encodedModulus.length + " bytes, max permitted "
+				throw new IllegalArgumentException("Size of encoded n is too large for FPE encryption (was " + encodedModulus.length + " bytes, max permitted "
 								+ MAX_N_BYTES + ")");
 			}
 
