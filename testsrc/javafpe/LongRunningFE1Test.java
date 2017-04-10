@@ -129,8 +129,8 @@ public class LongRunningFE1Test {
 	}
 
 	/**
-	 * This can run for a very long time (hours) depending on your processor.  You can adjust the number of tests by changing the
-	 * for-loop bounds.  It's 10 in the checked in version, but feel free to reduce or extend as you see fit.
+	 * This can run for a long time depending on your processor.  You can adjust the number of tests by changing the
+	 * for-loop bounds and the modulus.  It's 10 and 1024 in the checked in version, but feel free to reduce or extend as you see fit.
 	 * 
 	 * @throws InterruptedException Thrown if something goes wrong and a thread is interrupted (indicates a runtime failure not related to the code).
 	 */
@@ -140,7 +140,7 @@ public class LongRunningFE1Test {
 		List<Integer> primes = Arrays.stream(NumberTheory.PRIMES).boxed().collect(Collectors.toList());
 		// Change the range of the for loop to set how many round trip tests are done.
 		for (int i = 0; i < 10; i++) {
-			int modulus = r.nextInt(65535);
+			int modulus = r.nextInt(1024);
 			if (primes.contains(modulus)) {
 				// Skip prime moduli are they'll fail because you can't use a prime modulus with this algorithm.
 				continue;
