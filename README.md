@@ -1,4 +1,5 @@
-A Java implementation of Format Preserving Encryption using the scheme FE1 from the paper [Format-Preserving Encryption" by Bellare, Rogaway, et al](http://eprint.iacr.org/2009/251).
+# java-fpe
+A Java implementation of Format Preserving Encryption using the FE1 scheme from the paper ["Format-Preserving Encryption" by Bellare, Rogaway, et al](http://eprint.iacr.org/2009/251).
 
 Ported from [DotFPE](https://dotfpe.codeplex.com/); which was ported from [Botan Library](http://botan.randombit.net) Version 1.10.3.
 
@@ -38,6 +39,19 @@ public void demoRoundTrip() throws FPEException {
 You'll need Apache Ant and Apache Ivy to build.  Running `ant` in the project root will download, build, package and run all the unit tests.
 
 Note that the ant script includes calls to Git to pull the commit hash and version number (tag) from the repo when building a new distribution.
+
+## Dependencies
+
+The main code (in [src](https://github.com/Worldpay/java-fpe/tree/master/src)) doesn't have any dependencies outside of the stanard Java APIs (including JCE extensions).
+
+However, the unit test make us of the following:
+
+1. __Logback__ provides the logging implementation.  
+1. __slf4j__ provides the logging API that this code uses.
+1. __hamcrest-core-1.3__ provides provides unit test support.
+1. __Junit 4.11__ provides unit test support.
+
+See [LICENSE.md](https://github.com/Worldpay/java-fpe/blob/master/LICENSE.md) for details of the associated licenses and restrictions associated with these dependencies.
 
 ## Copyright
 
