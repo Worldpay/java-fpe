@@ -61,8 +61,10 @@ public class FE1 {
 				this.macGenerator = Mac.getInstance(HMAC_ALGORITHM);
 				this.macGenerator.init(new SecretKeySpec(key, HMAC_ALGORITHM));
 			} catch (NoSuchAlgorithmException e) {
+				// This should never happen as HMAC/SHA-2 are built in to the JVM.
 				throw new FPEException(HMAC_ALGORITHM + " is not a valid MAC algorithm on this JVM", e);
 			} catch (InvalidKeyException e) {
+				// Outer class checks that key is more than 1 byte, so don't think this can happen, included for completeness though.
 				throw new FPEException("The key passed was not valid for use with " + HMAC_ALGORITHM, e);
 			}
 
@@ -88,7 +90,8 @@ public class FE1 {
 				// Flushing most likely a no-op, but best be sure.
 				baos.flush();
 			} catch (IOException e) {
-				throw new FPEException("Unable to write to byte array", e);
+				// Can't imagine why this would ever happen!
+				throw new FPEException("Unable to write to byte array output stream!", e);
 			}
 			this.macNT = this.macGenerator.doFinal(baos.toByteArray());
 		}

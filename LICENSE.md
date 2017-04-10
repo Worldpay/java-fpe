@@ -19,11 +19,11 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 This software makes use of, but does not modify or customise, the following third party libraries, subject to the following licenses and restrictions.
 
-License was retrieved from the URIs shown on 6th April 2017.
+Licenses were retrieved from the URIs stated on 6th April 2017.
 
 ## logback-classic 1.1.2
 
-Logback provides the logging implementation.
+Logback provides the logging implementation.  It is not required at runtime, only for compiling and executing the unit test suite.
 
 License link: <https://logback.qos.ch/license.html>.
 
@@ -38,7 +38,7 @@ the Eclipse Foundation.
 
 ## slf4j-api 1.7.14
 
-slf4j provides the logging API that this code uses.
+slf4j provides the logging API that this code uses.  It is not required at runtime, only for compiling and executing the unit test suite.
 
 License link: <https://github.com/qos-ch/slf4j/blob/master/LICENSE.txt>.
 

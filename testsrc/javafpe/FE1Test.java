@@ -39,6 +39,27 @@ public class FE1Test {
 	}
 
 	/**
+	 * Test that passing an invalid key is rejected properly.
+	 * 
+	 * @throws FPEException expected.
+	 */
+	@Test(expected = FPEException.class)
+	public void testInvalidKey() throws FPEException {
+		new FE1().encrypt(BigInteger.valueOf(32), BigInteger.valueOf(0), new byte[] { 1, 2, 3, 4, 5, 6 }, new byte[] { 1, 2, 3, 4, 5 });
+	}
+
+	/**
+	 * Try a modulus that's too big for the library to handle (2^128).
+	 * 
+	 * @throws FPEException Expected exception
+	 */
+	@Test(expected = FPEException.class)
+	public void testTooLargeModulus() throws FPEException {
+		new FE1().encrypt(new BigInteger("100000000000000000000000000000000", 16), BigInteger.valueOf(0), new byte[] { 1, 2, 3, 4, 5 },
+						new byte[] { 1, 2, 3, 4, 5 });
+	}
+
+	/**
 	 * FE1 requires the factors of the modulus to be found and used in the algorithm, therefore prime moduli are not permitted.
 	 * 
 	 * @throws FPEException should be thrown.
@@ -167,6 +188,7 @@ public class FE1Test {
 
 	/**
 	 * Ciphertext must not be null.
+	 * 
 	 * @throws FPEException expected.
 	 */
 	@Test(expected = IllegalArgumentException.class)
