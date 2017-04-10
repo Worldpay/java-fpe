@@ -79,7 +79,7 @@ public class FE1Test {
 	 * 
 	 * @throws FPEException Expected exception
 	 */
-	@Test(expected = FPEException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testTooLargeModulus() throws FPEException {
 		new FE1().encrypt(new BigInteger("100000000000000000000000000000000", 16), BigInteger.valueOf(0), new byte[] { 1, 2, 3, 4, 5 },
 						new byte[] { 1, 2, 3, 4, 5 });
