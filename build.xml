@@ -190,6 +190,7 @@
 	</target>
 
 	<target name="update-build.properties" description="Updates or creates the file src/META-INF/build.properties which contains information used by the packaged program to track version." depends="create-properties">
+		<mkdir dir="src/META-INF"/>
 		<property name="propsFile" value="src/META-INF/build.properties" />
 		<propertyfile file="${propsFile}" comment="Created dynamically by Ant in build.xml update-version-properties task">
 			<entry key="CommitHash" value="${commitHash}" />
