@@ -41,9 +41,9 @@ Note that the ant script includes calls to Git to pull the commit hash and versi
 
 ## Dependencies
 
-The main code (in [src](https://github.com/Worldpay/java-fpe/tree/master/src)) doesn't have any dependencies outside of the stanard Java APIs (including JCE extensions).
+The main code (in [src](https://github.com/Worldpay/java-fpe/tree/master/src)) doesn't have any dependencies outside of the standard Java APIs (including JCE extensions).
 
-However, the unit test make us of the following:
+However, the unit tests make use of the following:
 
 1. __Logback__ provides the logging implementation.  
 1. __slf4j__ provides the logging API.
