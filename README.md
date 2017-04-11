@@ -9,10 +9,9 @@ See [LICENSE.md](https://github.com/Worldpay/java-fpe/blob/master/LICENSE.md) fo
 
 ```java
 /**
- * Sample code to round trip a number.
- * @throws FPEException If anyone goes wrong.
+ * Sample code to round trip a number using FE1.
+ * @throws FPEException If anything goes wrong.
  */
-@Test
 public void demoRoundTrip() throws FPEException {
 	FE1 fe1 = new FE1();
 	
@@ -47,9 +46,8 @@ The main code (in [src](https://github.com/Worldpay/java-fpe/tree/master/src)) d
 However, the unit test make us of the following:
 
 1. __Logback__ provides the logging implementation.  
-1. __slf4j__ provides the logging API that this code uses.
-1. __hamcrest-core-1.3__ provides provides unit test support.
-1. __Junit 4.11__ provides unit test support.
+1. __slf4j__ provides the logging API.
+1. __hamcrest-core-1.3__ and _Junit 4.11__ provide unit test support.
 
 See [LICENSE.md](https://github.com/Worldpay/java-fpe/blob/master/LICENSE.md) for details of the associated licenses and restrictions associated with these dependencies.
 
