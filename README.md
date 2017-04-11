@@ -47,7 +47,7 @@ However, the unit test make us of the following:
 
 1. __Logback__ provides the logging implementation.  
 1. __slf4j__ provides the logging API.
-1. __hamcrest-core-1.3__ and _Junit 4.11__ provide unit test support.
+1. __hamcrest-core-1.3__ and __Junit 4.11__ provide unit test support.
 
 See [LICENSE.md](https://github.com/Worldpay/java-fpe/blob/master/LICENSE.md) for details of the associated licenses and restrictions associated with these dependencies.
 
